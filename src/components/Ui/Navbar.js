@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -8,15 +8,19 @@ import {
   Modal,
   ModalHeader,
   ModalTitle,
+  ModalBody,
 } from "react-bootstrap";
 const NavbarComponent = () => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div>
       <Navbar expand="sm">
         <Navbar.Brand href="/">Luxury</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Button>Cart 0 Items</Button>
+          <Button onClick={handleShow}>Cart 0 Items</Button>
         </Navbar.Collapse>
       </Navbar>
 
