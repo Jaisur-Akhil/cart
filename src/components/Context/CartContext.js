@@ -2,7 +2,7 @@
 
 import React from "react";
 import { createContext, useState } from "react";
-
+import { ProductStore, getProductData } from "../Store/ProductStore";
 const CartContext = createContext({
   items: [],
   getProductQuantity: () => {},
@@ -40,13 +40,18 @@ export function CartProvider({ children }) {
       ]);
     }
   }
-
   function removeFromCart(id) {
     const quantity = getProductQuantity(id);
     if (quantity == 1) {
       deletee(id);
     } else {
-      setCartProduct();
+      setCartProduct(
+        cartProduct.map((product) =>
+          product.id === id
+            ? { ...product, quantity: product.quantity - 1 }
+            : product
+        )
+      );
     }
   }
 
@@ -57,6 +62,14 @@ export function CartProvider({ children }) {
       })
     );
   }
+  function getTotalCost() {
+    let totalCost = 0;
+    cartProduct.map((cartItem) => {
+      const productData = getProductData(cartItem.id);
+      totalCost += productData.price * cartItem.quantity;
+    });
+    return totalCost;
+  }
 
   const contextValue = {
     items: cartProduct,
@@ -66,9 +79,11 @@ export function CartProvider({ children }) {
     deletee,
     getTotalCost,
   };
+  //getProductData
+  //getProductData
 
   return (
-    <CardContext.Provider value={contextValue}>{children}</CardContext.Provider>
+    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
 }
 

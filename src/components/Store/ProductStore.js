@@ -41,7 +41,7 @@ const ProductStore = [
   },
 ];
 
-function getProductData(id) {
+export function getProductData(id) {
   let productData = ProductStore.find((product) => product.id === id);
   if (productData == undefined) {
     console.log("product does not exist for id", id);
