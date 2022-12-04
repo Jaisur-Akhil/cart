@@ -15,11 +15,48 @@ const ProdCard = (props) => {
           <Card.Img variant="top" src={props.product.img} />
           <Card.Title className="mt-3">{props.product.title}</Card.Title>
           <Card.Text>{props.product.price}</Card.Text>
-          <Button
-            varient="primary"
-            onClick={() => cart.addtoCart(props.product.id)}>
-            Add to Cart
-          </Button>
+          {productQuantity > 0 ? (
+            <>
+              {" "}
+              <Form as={Row}>
+                <Form.Label column="true" sm="6">
+                  In Cart: {productQuantity}
+                </Form.Label>
+                <Col sm="6">
+                  <Button
+                    sm="6"
+                    onClick={() => {
+                      cart.addtoCart(props.product.id);
+                    }}
+                    className="mx-2">
+                    +
+                  </Button>
+                  <Button
+                    sm="6"
+                    onClick={() => {
+                      cart.removeFromCart(props.product.id);
+                    }}
+                    className="mx-2">
+                    -
+                  </Button>
+                </Col>
+              </Form>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  cart.deletee(props.product.id);
+                }}
+                className="my-2">
+                Delete
+              </Button>
+            </>
+          ) : (
+            <Button
+              variant="primary"
+              onClick={() => cart.addtoCart(props.product.id)}>
+              Add to Cart
+            </Button>
+          )}
         </Card.Body>
       </Card>
     </div>
