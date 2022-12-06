@@ -1,9 +1,9 @@
 /** @format */
 
 import React from "react";
-import Button from "react-bootstrap";
-import { useContext } from "react";
+import { Button } from "react-bootstrap";
 import CartContext from "../Context/CartContext";
+import { useContext } from "react";
 import getProductData from "../Store/ProductStore";
 
 const CartLog = (props) => {
@@ -11,7 +11,7 @@ const CartLog = (props) => {
   const id = props.id;
   const quantity = props.quantity;
   const productData = getProductData(id);
-
+ 
   return (
     <div>
       <h3>{productData.title}</h3>

@@ -41,16 +41,14 @@ const NavbarComponent = () => {
         <ModalBody>
           {productsCount > 0 ? (
             <>
+              {" "}
+              {/* {currentProduct.title} {currentProduct.id} */}
               <p>Items in your Cart </p>
               {cart.items.map((currentProduct, idx) => (
-                <h1>
-                  {/* {currentProduct.title} {currentProduct.id} */}
-                  <CartLog
-                    key={idx}
-                    id={currentProduct.id}
-                    quantity={currentProduct.quantity}
-                  />
-                </h1>
+                <CartLog
+                  key={idx}
+                  id={currentProduct.id}
+                  quantity={currentProduct.quantity}></CartLog>
               ))}
               <h1>Total : {cart.getTotalCost().toFixed(2)} </h1>
               <Button variant="success">Purchase Item</Button>
@@ -65,5 +63,4 @@ const NavbarComponent = () => {
 };
 
 export default NavbarComponent;
-{
-}
+
